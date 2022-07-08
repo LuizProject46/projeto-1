@@ -4,15 +4,16 @@ import { loadPosts } from '../../utils/load-posts';
 import { PostsContainer } from '../../components/PostsContainer';
 import {Button} from '../../components/Button'
 import { TextInput } from '../../components/TextInput';
+import { Loading } from '../../components/Loading';
 
  class Home extends Component{
    state = {
      posts : [],
      allPosts: [],
      page: 0,
-     postsPerPage: 2,
+     postsPerPage: 4,
      searchValue: '',
-     searchItems: []
+
    }
 
    async componentDidMount(){
@@ -59,21 +60,22 @@ import { TextInput } from '../../components/TextInput';
       const {posts, page, postsPerPage, allPosts, searchValue} = this.state
       const noMorePosts = page + postsPerPage >= allPosts.length
 
-      const filteredPosts = !!searchValue ? 
-        posts.filter(post => post.title.toUpperCase().includes(searchValue.toUpperCase()))
-      : 
-      posts
+      const filteredPosts = !!searchValue ? posts.filter(post => post.title.toUpperCase().includes(searchValue.toUpperCase())) : posts
       return (
         <section className='container'>
           <div className="search-container">
-          <TextInput 
-            searchValue={searchValue} 
-            handleChange={this.handleSearch}
-          />
+            <TextInput 
+              searchValue={searchValue} 
+              handleChange={this.handleSearch}
+            />
           </div>
-
-          {!filteredPosts.length && (
+          
+          {/* {!filteredPosts.length && posts.length && (
             <p>Nenhum resultado encontrado</p>
+          )} */}
+
+          {!posts.length && (
+            <Loading/>
           )}
 
           {filteredPosts.length > 0 && (
@@ -81,7 +83,7 @@ import { TextInput } from '../../components/TextInput';
           )}
           
           <div className='button-container'>
-            {!searchValue && (
+            {!searchValue && posts.length && (
               <Button 
               text="Load more"
               onClick={this.loadMorePosts}
