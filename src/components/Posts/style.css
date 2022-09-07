@@ -1,20 +1,6 @@
-.post{
-    background: #fff;
-    box-shadow: 0 0  10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transition: transform 200ms ease-in-out;
+.posts{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
   
-  }
-  
-  .post:hover{
-    transform: scale(1.04)
-  }
-  
-  .post img{
-    max-width: 100%;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .post-content{
-    padding: 20px;
   }

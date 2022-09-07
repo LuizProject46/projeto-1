@@ -1,7 +1,7 @@
 import './styles.css';
 import { Component } from 'react'
 import { loadPosts } from '../../utils/load-posts';
-import { PostsContainer } from '../../components/PostsContainer';
+import { Posts } from '../../components/Posts';
 import {Button} from '../../components/Button'
 import { TextInput } from '../../components/TextInput';
 import { Loading } from '../../components/Loading';
@@ -79,7 +79,7 @@ import { Loading } from '../../components/Loading';
           )}
 
           {filteredPosts.length > 0 && (
-            <PostsContainer posts={filteredPosts}/>
+            <Posts posts={filteredPosts}/>
           )}
           
           <div className='button-container'>
